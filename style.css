@@ -512,3 +512,78 @@ input[id=username], input[type=password]{
     }
 }
 
+/* tf was this ".container" for? I cant find it anywhere else */
+.container {
+	width:100%;
+    background-color:#11b706;
+    padding-top:20px;
+    padding-left:15px;
+    padding-right:15px;
+	margin-left:auto;
+	margin-right:auto;
+}
+/* seller page */
+#welcomeback {
+    text-align: center;
+	color:#11b706;
+}
+html {
+    font-family: sans-serif;
+    background: #ffc600;
+}
+.inbox {
+    max-width: 400px;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+}
+.item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #F1F1F1;
+}
+.item:last-child {
+    border-bottom: 0;
+}
+input:checked + p {
+    background: #F9F9F9;
+    font-weight: bold;
+}
+input[type="checkbox"] {
+    margin: 20px;
+}
+.foodtype {
+    margin: 0;
+    padding: 20px;
+    transition: background 0.2s;
+    flex: 1;
+    font-family:'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+    border-left: 1px solid #D1E2FF;
+}
+input[id=submitseller]{
+    background-color: #04AA6D;
+    width: 50%;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 20px;
+	text-align: center;
+}
+input[id=nameofOasis]{
+    width: 25%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #383737;
+    font-size: 15px ;
+    border-radius: 4px;
+}

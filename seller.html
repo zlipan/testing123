@@ -4,7 +4,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Seller Page</title>
 		<link rel="stylesheet" href="style.css">
+
+		<!-- Mapbox stuff -->
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+		<style>
+		body { margin: 0; padding: 0; height: 950px;}
+		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+		#nameofOasisLabel{ font-size: 20px; font-weight: bold;}
+		</style>
 	</head>
+
 	<body>
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -35,46 +45,81 @@
             </ul>
         </div>
     </nav>
+
 	<div class="main_content">
-		<h1>Welcome Back</h1>
+		<h1 id="welcomeback" >New Oasis</h1>
 	</div>
+		 <!--they will have a list of products like a yard sale and first come first serve-->
 	<center>
-		<h2>Product Listings</h2> <!--they will have a list of products like a yard sale and first come first serve-->
-		<div class="container">
-            <div id="st-box">
-                <img src="images/milk.png" style="width:120px; height:150px;">
-				<h2>Dairy</h2>
-            </div>
-            <!--make a dropdown of types to click and just put in random numbers of amount in the database-->
-            <div id="nd-box">
-                <img src="images/vegetables.png" style="width:150px; height:150px;">
-				<h2>Vegetables</h2>
-            </div>
-            <!--change this into a list of products-->
-            <div id="rd-box">
-                <img src="images/fruits.png" style="width:120px; height:150px;">
-				<h2>Fruits</h2>
-            </div>
-        </div>
-        </center>
-		<center>
-		
-		<div class="container">
-            <div id="st-box">
-                <img src="images'drinks.png" style="width:120px; height:150px;">
-				<h2>Drinks</h2>
-            </div>
-            <!--add product of meat for demo I guess and when seller gets rid of it then get rid of it here-->
-            <div id="nd-box">
-                <img src="images/meats.png" style="width:150px; height:150px;">
-		<h2>Meats<h2>
-            </div>
-            <!--change this into a list of products-->
-            <div id="rd-box">
-                <img src="images/nonperishables.png" style="width:120px; height:150px;">
-		<h2>Non-Perishables</h2>
-            </div>
-        </div>
-        </center>
+	<form action="/seller.php">
+	<div class="nameofOasis">
+		<label for="nameofOasis" id="nameofOasisLabel">Name of Oasis: </label>
+		<input type="text" id="nameofOasis" name="nameofOasis" required>
+	</div>
+	<h2>Product Listings</h2>
+	<div class="inbox">
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype" >Dairy</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype">Vegetables</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype">Fruits</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype">Drinks</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype">Meats</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p class="foodtype">Non-Perishables</p>
+		</div>
+	</div>
+
+	<!--Mapbox stuff-->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <h2 id="enterAddress">Location of Oasis</h2>
+    <style>
+    #geocoder {
+    z-index: 1;
+    margin: 20px;
+    }
+    .mapboxgl-ctrl-geocoder {
+    min-width: 50%;
+    }
+    </style>
+    <div id="geocoder"></div>
+    <pre id="result"></pre>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoienBhbjMiLCJhIjoiY2xha2Yzd3RvMGxvZzN5bGYydGpsZGNjOSJ9.JbRKjmgYO_jvMrQLVzEMSQ';
+        const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        types: 'poi, address'
+    });
+    geocoder.addTo('#geocoder');
+    // Get the geocoder results container.
+    const results = document.getElementById('result');
+    // Add geocoder result to container.
+    geocoder.on('result', (e) => {
+    results.innerText = "Coordinates: " + JSON.stringify(e.result.geometry.coordinates);
+    });
+    // Clear results container when search is cleared.
+    geocoder.on('clear', () => {
+    results.innerText = '';
+    });
+    </script>
+
+	<input type="submit" value="Submit" id="submitseller">
+	</form>
+
 	</body>
 </html>
