@@ -51,75 +51,88 @@
 	</div>
 		 <!--they will have a list of products like a yard sale and first come first serve-->
 	<center>
-	<form action="/seller.php">
-	<div class="nameofOasis">
-		<label for="nameofOasis" id="nameofOasisLabel">Name of Oasis: </label>
-		<input type="text" id="nameofOasis" name="nameofOasis" required>
-	</div>
-	<h2>Product Listings</h2>
-	<div class="inbox">
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype" >Dairy</p>
-		</div>
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype">Vegetables</p>
-		</div>
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype">Fruits</p>
-		</div>
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype">Drinks</p>
-		</div>
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype">Meats</p>
-		</div>
-		<div class="item">
-			<input type="checkbox">
-			<p class="foodtype">Non-Perishables</p>
-		</div>
-	</div>
+	<form action="testing.php" method="POST">
+        <div class="nameofOasis">
+            <label for="nameofOasis" id="nameofOasisLabel">Name of Oasis: </label>
+            <input type="text" id="nameofOasis" name="nameofOasis" required>
+        </div>
+        <h2>Product Listings</h2>
+        <div class="inbox">
+            <div class="item">
+                <input type="checkbox" id="dairy" name="diary">
+                <label for = "dairy" class="foodtype">Dairy</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="vegetables" name="vegetables">
+                <label for = "vegetables" class="foodtype">Vegetables</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="fruits" name="fruits">
+                <label for = "fruits" class="foodtype">Fruits</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="drinks" name="drinks">
+                <label for = "drinks" class="foodtype">Drinks</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="meats" name="meats">
+                <label for = "meats" class="foodtype">Meats</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="nonperi" name="nonperi">
+                <label for = "nonperi" class="foodtype">Non-Perishables</label>
+            </div>
+        </div>
 
-	<!--Mapbox stuff-->
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-    <h2 id="enterAddress">Location of Oasis</h2>
-    <style>
-    #geocoder {
-    z-index: 1;
-    margin: 20px;
-    }
-    .mapboxgl-ctrl-geocoder {
-    min-width: 50%;
-    }
-    </style>
-    <div id="geocoder"></div>
-    <pre id="result"></pre>
-    <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoienBhbjMiLCJhIjoiY2xha2Yzd3RvMGxvZzN5bGYydGpsZGNjOSJ9.JbRKjmgYO_jvMrQLVzEMSQ';
-        const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        types: 'poi, address'
-    });
-    geocoder.addTo('#geocoder');
-    // Get the geocoder results container.
-    const results = document.getElementById('result');
-    // Add geocoder result to container.
-    geocoder.on('result', (e) => {
-    results.innerText = "Coordinates: " + JSON.stringify(e.result.geometry.coordinates);
-    });
-    // Clear results container when search is cleared.
-    geocoder.on('clear', () => {
-    results.innerText = '';
-    });
-    </script>
-
-	<input type="submit" value="Submit" id="submitseller">
+        <!--Mapbox stuff for location input-->
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+        <h2 id="enterAddress">Location of Oasis</h2>
+        <input type="hidden" id="location" name="location">
+        <style>
+            #geocoder {
+            z-index: 1;
+            margin: 20px;
+            }
+            .mapboxgl-ctrl-geocoder {
+            min-width: 50%;
+            }
+        </style>
+        <div id="geocoder"></div>
+        <pre id="result"></pre>
+        <input type="submit" value="Submit" id="submitseller">
 	</form>
 
+    <!--Mapbox stuff-->
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoienBhbjMiLCJhIjoiY2xha2Yzd3RvMGxvZzN5bGYydGpsZGNjOSJ9.JbRKjmgYO_jvMrQLVzEMSQ';
+            const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            types: 'poi, address'
+        });
+        geocoder.addTo('#geocoder');
+            /* testing geocoder coordinates
+                // Get the geocoder results container.
+                const results = document.getElementById('result');
+                // Add geocoder result to container.
+                geocoder.on('result', (e) => {
+                    results.innerText = "Coordinates: " + JSON.stringify(e.result.geometry.coordinates);
+                });
+                // Clear results container when search is cleared.
+                geocoder.on('clear', () => {
+                results.innerText = '';
+                });
+            */
+       // save geocoder coordinates to location input value
+        geocoder.on('result', function(e) {
+            const coords = e.result.center;
+            document.getElementById("location").value = coords;
+        });
+    </script>
+
+    <!-- GoToTop Button -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script src="app.js"></script>
+    
 	</body>
 </html>

@@ -451,7 +451,7 @@ input[type=submit]:hover{
     background-color: #ff9a17;
     transition: all 0.3s ease;
 }
-input[id=username], input[type=password]{
+input[id=email], input[type=password]{
     width: 100%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -586,4 +586,29 @@ input[id=nameofOasis]{
     border-bottom: 2px solid #383737;
     font-size: 15px ;
     border-radius: 4px;
+}
+
+.geocoder {
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+    top: 80px;
+    margin-top: 20px;
+}
+.mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+}
+#map {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 45%;
+    margin-left: -25%;
+    width: 60%;
+    margin-top: 150px;
+}
+.mapContainer{
+    height: 800px;
 }
