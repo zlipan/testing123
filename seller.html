@@ -201,7 +201,7 @@
     var location = getInputVal('location'); */
 
    const userID = push(child(ref(database), 'itemsavailable')).key; 
-  set(ref(database, 'itemsavailable/' ), {
+  set(ref(database, 'itemsavailable/' + userID), {
         nameofOasis: nameofOasis,
         dairy: dairy,
         vegetables: vegetables,
