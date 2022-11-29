@@ -547,7 +547,7 @@ html {
 .item:last-child {
     border-bottom: 0;
 }
-input:checked + p {
+input:checked + label {
     background: #F9F9F9;
     font-weight: bold;
 }
@@ -587,7 +587,6 @@ input[id=nameofOasis]{
     font-size: 15px ;
     border-radius: 4px;
 }
-
 .geocoder {
     position: absolute;
     z-index: 1;
@@ -611,4 +610,18 @@ input[id=nameofOasis]{
 }
 .mapContainer{
     height: 800px;
+}
+.marker {
+    background-image: url('images/pin.png');
+    background-size: cover;
+    width: 16px;
+    height: 26px;
+    cursor: pointer;
+}
+.mapboxgl-popup {
+    max-width: 200px;
+}
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
