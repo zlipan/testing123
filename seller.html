@@ -156,19 +156,19 @@
     const database = getDatabase(app);
 
     submitseller.addEventListener('click',(e) => {
-    var nameofOasis = document.getElementById('nameofOasis');
-    var dairy = document.getElementById('dairy');
-    var vegetables = document.getElementById('vegetables');
-    var fruits = document.getElementById('fruits');
-    var drinks = document.getElementById('drinks');
-    var meats = document.getElementById('meats');
-    var nonperi = document.getElementById('nonperi');
-    var location = document.getElementById('location');
+    var nameofOasisLabel = document.getElementById('nameofOasisLabel').value;
+    var dairy = document.getElementById('dairy').value;
+    var vegetables = document.getElementById('vegetables').value;
+    var fruits = document.getElementById('fruits').value;
+    var drinks = document.getElementById('drinks').value;
+    var meats = document.getElementById('meats').value;
+    var nonperi = document.getElementById('nonperi').value;
+    var location = document.getElementById('location').value;
     
     
   const userId = push(child(ref(database), 'itemsavailable')).key; 
   set(ref(database, 'itemsavailable/' + userId ), {
-        nameofOasis: nameofOasis,
+        nameofOasis: nameofOasisLabel,
         dairy: dairy,
         vegetables: vegetables,
         fruits: fruits,
